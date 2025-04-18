@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Forms\DuyetDon\" />
+    <Folder Include="Forms\Collection\" />
+    <Folder Include="Forms\Other\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

@@ -28,6 +28,10 @@ namespace TinDungNganHang.Models
 
         public DateTime NgaySinh { get; set; }
 
+        public string? TenBoMe  { get; set; }
+
+        public string? SdtBoMe { get; set; }
+
         // Navigation
         public virtual ICollection<KhoanVay> ? KhoanVays { get; set; }
     }

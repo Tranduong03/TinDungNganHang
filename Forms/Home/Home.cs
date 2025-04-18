@@ -20,9 +20,6 @@ namespace TinDungNganHang.Forms.Home
 
         private void Home_Load(object sender, EventArgs e)
         {
-            //LoadForm(new Label { Text = "Bank Credit Department of Tran Nguyen Phi Duong!"
-            //    , AutoSize = true, Font = new Font("Segoe UI", 18) }
-            //);
             LoadForm(new HomePanel());
         }
 
@@ -57,7 +54,7 @@ namespace TinDungNganHang.Forms.Home
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
-            LoadForm(new Label { Text = "Quản lý khách hàng", AutoSize = true, Font = new Font("Segoe UI", 18) });
+            LoadForm(new Credit.Profile());
         }
 
         private void btn_HomePanel_Click(object sender, EventArgs e)

@@ -43,7 +43,7 @@
             usernameTextBox.PlaceholderText = "Username";
             usernameTextBox.Size = new Size(482, 38);
             usernameTextBox.TabIndex = 1;
-            this.usernameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            usernameTextBox.KeyDown += TextBox_KeyDown;
             // 
             // passwordTextBox
             // 
@@ -55,7 +55,7 @@
             passwordTextBox.PlaceholderText = "Password";
             passwordTextBox.Size = new Size(482, 38);
             passwordTextBox.TabIndex = 3;
-            this.passwordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_KeyDown);
+            passwordTextBox.KeyDown += TextBox_KeyDown;
             // 
             // loginButton
             // 
