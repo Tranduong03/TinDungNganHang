@@ -48,6 +48,11 @@
             tbxTenBoMe = new TextBox();
             label2 = new Label();
             panel2 = new Panel();
+            btnCancelLoan = new Button();
+            btnSaveLoan = new Button();
+            lblCCCD = new Label();
+            label11 = new Label();
+            label12 = new Label();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
@@ -165,7 +170,7 @@
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(244, 49);
             btnSave.TabIndex = 15;
-            btnSave.Text = "Lưu Thông Tin";
+            btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += BtnSave_Click;
             // 
@@ -268,6 +273,11 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btnCancelLoan);
+            panel2.Controls.Add(btnSaveLoan);
+            panel2.Controls.Add(lblCCCD);
+            panel2.Controls.Add(label11);
+            panel2.Controls.Add(label12);
             panel2.Controls.Add(label10);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(label8);
@@ -281,8 +291,65 @@
             panel2.Controls.Add(txtLaiSuat);
             panel2.Location = new Point(700, 127);
             panel2.Name = "panel2";
-            panel2.Size = new Size(900, 900);
+            panel2.Size = new Size(900, 1100);
             panel2.TabIndex = 19;
+            // 
+            // btnCancelLoan
+            // 
+            btnCancelLoan.BackColor = Color.Pink;
+            btnCancelLoan.FlatStyle = FlatStyle.Flat;
+            btnCancelLoan.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelLoan.ForeColor = Color.Black;
+            btnCancelLoan.Location = new Point(558, 811);
+            btnCancelLoan.Name = "btnCancelLoan";
+            btnCancelLoan.Size = new Size(170, 49);
+            btnCancelLoan.TabIndex = 33;
+            btnCancelLoan.Text = "Cancel";
+            btnCancelLoan.UseVisualStyleBackColor = false;
+            btnCancelLoan.Click += btnCancelLoan_Click;
+            // 
+            // btnSaveLoan
+            // 
+            btnSaveLoan.BackColor = Color.GreenYellow;
+            btnSaveLoan.FlatStyle = FlatStyle.Flat;
+            btnSaveLoan.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSaveLoan.ForeColor = Color.Black;
+            btnSaveLoan.Location = new Point(130, 811);
+            btnSaveLoan.Name = "btnSaveLoan";
+            btnSaveLoan.Size = new Size(244, 49);
+            btnSaveLoan.TabIndex = 20;
+            btnSaveLoan.Text = "Save All";
+            btnSaveLoan.UseVisualStyleBackColor = false;
+            btnSaveLoan.Click += btnSaveLoan_Click;
+            // 
+            // lblCCCD
+            // 
+            lblCCCD.AutoSize = true;
+            lblCCCD.Font = new Font("Bookman Old Style", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCCCD.Location = new Point(322, 662);
+            lblCCCD.Name = "lblCCCD";
+            lblCCCD.Size = new Size(428, 33);
+            lblCCCD.TabIndex = 32;
+            lblCCCD.Text = "Chưa có thông tin khách hàng";
+            lblCCCD.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            label11.BackColor = Color.Black;
+            label11.Location = new Point(125, 703);
+            label11.Name = "label11";
+            label11.Size = new Size(650, 2);
+            label11.TabIndex = 31;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Location = new Point(150, 655);
+            label12.Name = "label12";
+            label12.Size = new Size(162, 38);
+            label12.TabIndex = 30;
+            label12.Text = "Khách hàng:";
             // 
             // label10
             // 
@@ -425,5 +492,10 @@
         private Label label6;
         private Label label10;
         private Label label9;
+        private Label lblCCCD;
+        private Label label11;
+        private Label label12;
+        private Button btnCancelLoan;
+        private Button btnSaveLoan;
     }
 }

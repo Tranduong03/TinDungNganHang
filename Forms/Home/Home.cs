@@ -8,14 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TinDungNganHang.Forms.Auth;
+using TinDungNganHang.Repositories;
 
 namespace TinDungNganHang.Forms.Home
 {
     internal partial class Home : BaseForm
     {
+        private readonly DataContext _context;
         public Home() : base()
         {
             InitializeComponent();
+            _context = new DataContext();
         }
 
         private void Home_Load(object sender, EventArgs e)
@@ -54,7 +57,7 @@ namespace TinDungNganHang.Forms.Home
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
-            LoadForm(new Credit.Profile());
+            LoadForm(new Credit.Overview(this));
         }
 
         private void btn_HomePanel_Click(object sender, EventArgs e)
@@ -68,5 +71,6 @@ namespace TinDungNganHang.Forms.Home
             loginForm.Show();
             this.Close();
         }
+
     }
 }

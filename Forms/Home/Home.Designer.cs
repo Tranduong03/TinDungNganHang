@@ -22,6 +22,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             panelMenu = new Panel();
+            lblName = new Label();
+            pictureBox1 = new PictureBox();
             btnExit = new Button();
             btn_HomePanel = new Button();
             btnKhachHang = new Button();
@@ -29,11 +31,14 @@
             btnDuyetVay = new Button();
             panelMain = new Panel();
             panelMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panelMenu
             // 
-            panelMenu.BackColor = Color.LightSteelBlue;
+            panelMenu.BackColor = Color.LightSkyBlue;
+            panelMenu.Controls.Add(lblName);
+            panelMenu.Controls.Add(pictureBox1);
             panelMenu.Controls.Add(btnExit);
             panelMenu.Controls.Add(btn_HomePanel);
             panelMenu.Controls.Add(btnKhachHang);
@@ -45,10 +50,32 @@
             panelMenu.Size = new Size(400, 1250);
             panelMenu.TabIndex = 1;
             // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Font = new Font("Bookman Old Style", 22F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblName.Location = new Point(79, 274);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(239, 52);
+            lblName.TabIndex = 6;
+            lblName.Text = "Hello, you";
+            lblName.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(105, 61);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(190, 190);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            // 
             // btnExit
             // 
             btnExit.Font = new Font("Segoe UI", 14F);
-            btnExit.Location = new Point(0, 739);
+            btnExit.Location = new Point(0, 1000);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(400, 60);
             btnExit.TabIndex = 4;
@@ -58,7 +85,7 @@
             // btn_HomePanel
             // 
             btn_HomePanel.Font = new Font("Segoe UI", 14F);
-            btn_HomePanel.Location = new Point(-3, 209);
+            btn_HomePanel.Location = new Point(0, 520);
             btn_HomePanel.Name = "btn_HomePanel";
             btn_HomePanel.Size = new Size(400, 60);
             btn_HomePanel.TabIndex = 3;
@@ -69,7 +96,7 @@
             // btnKhachHang
             // 
             btnKhachHang.Font = new Font("Segoe UI", 14F);
-            btnKhachHang.Location = new Point(0, 629);
+            btnKhachHang.Location = new Point(0, 880);
             btnKhachHang.Name = "btnKhachHang";
             btnKhachHang.Size = new Size(400, 60);
             btnKhachHang.TabIndex = 0;
@@ -79,7 +106,7 @@
             // btnThuNo
             // 
             btnThuNo.Font = new Font("Segoe UI", 14F);
-            btnThuNo.Location = new Point(0, 459);
+            btnThuNo.Location = new Point(0, 640);
             btnThuNo.Name = "btnThuNo";
             btnThuNo.Size = new Size(400, 60);
             btnThuNo.TabIndex = 1;
@@ -89,7 +116,7 @@
             // btnDuyetVay
             // 
             btnDuyetVay.Font = new Font("Segoe UI", 14F);
-            btnDuyetVay.Location = new Point(0, 348);
+            btnDuyetVay.Location = new Point(0, 760);
             btnDuyetVay.Name = "btnDuyetVay";
             btnDuyetVay.Size = new Size(400, 60);
             btnDuyetVay.TabIndex = 2;
@@ -98,7 +125,7 @@
             // 
             // panelMain
             // 
-            panelMain.BackColor = Color.White;
+            panelMain.BackColor = SystemColors.GradientActiveCaption;
             panelMain.Dock = DockStyle.Fill;
             panelMain.Location = new Point(400, 0);
             panelMain.Name = "panelMain";
@@ -119,10 +146,14 @@
             Text = "Home";
             Load += Home_Load;
             panelMenu.ResumeLayout(false);
+            panelMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         private Button btn_HomePanel;
         private Button btnExit;
+        private PictureBox pictureBox1;
+        private Label lblName;
     }
 }
