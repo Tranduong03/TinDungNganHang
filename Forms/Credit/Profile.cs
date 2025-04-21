@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TinDungNganHang.Models;
 using TinDungNganHang.Repositories;
+using TinDungNganHang.Services;
 
 namespace TinDungNganHang.Forms.Credit
 {
@@ -50,6 +51,17 @@ namespace TinDungNganHang.Forms.Credit
             dtpNgaySinh.Value = DateTime.Now;
             tbxTenBoMe.Clear();
             tbxSdtBoMe.Clear();
+        }
+
+        private void cbThoiHanVay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbThoiHanVay.SelectedItem != null)
+            {
+                int months = int.Parse(cbThoiHanVay.SelectedItem?.ToString() ?? "0");
+                //int months = int.Parse(cbThoiHanVay.SelectedItem.ToString());
+                decimal laiSuat = LoanInterestService.GetInterestRate(months);
+                txtLaiSuat.Text = laiSuat.ToString("0.##") + " % / month";
+            }
         }
     }
 }

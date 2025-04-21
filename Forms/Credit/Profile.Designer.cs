@@ -4,12 +4,18 @@
     {
 
         private System.ComponentModel.IContainer components = null;
-
+        // Các control của phần Thông tin cá nhân
         private Label lblTitle;
-        private TextBox txtCCCD, txtHoTen, txtDiaChi, txtSoDienThoai;
+        private TextBox txtCCCD, txtHoTen, txtDiaChi, txtSoDienThoai, txtLaiSuat;
         private Label underlineCCCD, underlineHoTen, underlineDiaChi, underlineSoDienThoai;
         private DateTimePicker dtpNgaySinh;
         private Button btnSave;
+
+        // Các control của phần Khoản vay
+        private Label lblKhoanVay;
+        private ComboBox cbThoiHanVay;
+        private DateTimePicker dtpNgayVay;
+
 
         protected override void Dispose(bool disposing)
         {
@@ -42,7 +48,19 @@
             tbxTenBoMe = new TextBox();
             label2 = new Label();
             panel2 = new Panel();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            tbxSotienvay = new TextBox();
+            label5 = new Label();
+            lblKhoanVay = new Label();
+            dtpNgayVay = new DateTimePicker();
+            cbThoiHanVay = new ComboBox();
+            txtLaiSuat = new TextBox();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitle
@@ -143,7 +161,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.Black;
-            btnSave.Location = new Point(808, 1102);
+            btnSave.Location = new Point(96, 953);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(244, 49);
             btnSave.TabIndex = 15;
@@ -157,7 +175,7 @@
             btnClearAll.FlatStyle = FlatStyle.Flat;
             btnClearAll.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClearAll.ForeColor = Color.Black;
-            btnClearAll.Location = new Point(1092, 1102);
+            btnClearAll.Location = new Point(426, 953);
             btnClearAll.Name = "btnClearAll";
             btnClearAll.Size = new Size(170, 49);
             btnClearAll.TabIndex = 16;
@@ -180,8 +198,10 @@
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(label4);
             panel1.Controls.Add(tbxSdtBoMe);
+            panel1.Controls.Add(btnClearAll);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(tbxTenBoMe);
+            panel1.Controls.Add(btnSave);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txtCCCD);
             panel1.Controls.Add(label1);
@@ -239,19 +259,134 @@
             label2.AutoSize = true;
             label2.BackColor = Color.LightGoldenrodYellow;
             label2.BorderStyle = BorderStyle.FixedSingle;
-            label2.Font = new Font("Bookman Old Style", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(178, 83);
+            label2.Font = new Font("Bookman Old Style", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(149, 83);
             label2.Name = "label2";
-            label2.Size = new Size(319, 35);
+            label2.Size = new Size(414, 45);
             label2.TabIndex = 18;
             label2.Text = "Information Customer";
             // 
             // panel2
             // 
+            panel2.Controls.Add(label10);
+            panel2.Controls.Add(label9);
+            panel2.Controls.Add(label8);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(tbxSotienvay);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(lblKhoanVay);
+            panel2.Controls.Add(dtpNgayVay);
+            panel2.Controls.Add(cbThoiHanVay);
+            panel2.Controls.Add(txtLaiSuat);
             panel2.Location = new Point(700, 127);
             panel2.Name = "panel2";
             panel2.Size = new Size(900, 900);
             panel2.TabIndex = 19;
+            // 
+            // label10
+            // 
+            label10.BackColor = Color.Black;
+            label10.Location = new Point(125, 595);
+            label10.Name = "label10";
+            label10.Size = new Size(650, 2);
+            label10.TabIndex = 28;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Light", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(150, 545);
+            label9.Name = "label9";
+            label9.Size = new Size(128, 38);
+            label9.TabIndex = 27;
+            label9.Text = "Ngày vay";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Bookman Old Style", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(130, 325);
+            label8.Name = "label8";
+            label8.Size = new Size(111, 33);
+            label8.TabIndex = 26;
+            label8.Text = "Kỳ hạn";
+            // 
+            // label7
+            // 
+            label7.BackColor = Color.Black;
+            label7.Location = new Point(125, 482);
+            label7.Name = "label7";
+            label7.Size = new Size(650, 2);
+            label7.TabIndex = 25;
+            // 
+            // label6
+            // 
+            label6.BackColor = Color.Black;
+            label6.Location = new Point(130, 375);
+            label6.Name = "label6";
+            label6.Size = new Size(650, 2);
+            label6.TabIndex = 24;
+            // 
+            // tbxSotienvay
+            // 
+            tbxSotienvay.BorderStyle = BorderStyle.None;
+            tbxSotienvay.Font = new Font("Bookman Old Style", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxSotienvay.Location = new Point(150, 225);
+            tbxSotienvay.Name = "tbxSotienvay";
+            tbxSotienvay.PlaceholderText = "Số tiền vay: VND";
+            tbxSotienvay.Size = new Size(600, 33);
+            tbxSotienvay.TabIndex = 23;
+            // 
+            // label5
+            // 
+            label5.BackColor = Color.Black;
+            label5.Location = new Point(125, 265);
+            label5.Name = "label5";
+            label5.Size = new Size(650, 2);
+            label5.TabIndex = 10;
+            // 
+            // lblKhoanVay
+            // 
+            lblKhoanVay.AutoSize = true;
+            lblKhoanVay.Font = new Font("Bookman Old Style", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblKhoanVay.Location = new Point(242, 85);
+            lblKhoanVay.Name = "lblKhoanVay";
+            lblKhoanVay.Size = new Size(400, 43);
+            lblKhoanVay.TabIndex = 0;
+            lblKhoanVay.Text = "Thông Tin Khoản Vay";
+            // 
+            // dtpNgayVay
+            // 
+            dtpNgayVay.Font = new Font("Bookman Old Style", 14F);
+            dtpNgayVay.Format = DateTimePickerFormat.Short;
+            dtpNgayVay.Location = new Point(302, 545);
+            dtpNgayVay.Name = "dtpNgayVay";
+            dtpNgayVay.Size = new Size(448, 40);
+            dtpNgayVay.TabIndex = 5;
+            // 
+            // cbThoiHanVay
+            // 
+            cbThoiHanVay.BackColor = Color.White;
+            cbThoiHanVay.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbThoiHanVay.Font = new Font("Bookman Old Style", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbThoiHanVay.Items.AddRange(new object[] { "6", "12", "24", "36" });
+            cbThoiHanVay.Location = new Point(242, 325);
+            cbThoiHanVay.Name = "cbThoiHanVay";
+            cbThoiHanVay.Size = new Size(508, 41);
+            cbThoiHanVay.TabIndex = 8;
+            cbThoiHanVay.SelectedIndexChanged += cbThoiHanVay_SelectedIndexChanged;
+            // 
+            // txtLaiSuat
+            // 
+            txtLaiSuat.Font = new Font("Bookman Old Style", 14F);
+            txtLaiSuat.Location = new Point(150, 435);
+            txtLaiSuat.Name = "txtLaiSuat";
+            txtLaiSuat.PlaceholderText = "Lãi suất (%)";
+            txtLaiSuat.ReadOnly = true;
+            txtLaiSuat.Size = new Size(600, 40);
+            txtLaiSuat.TabIndex = 9;
             // 
             // Profile
             // 
@@ -261,15 +396,15 @@
             ClientSize = new Size(1600, 1250);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(btnClearAll);
             Controls.Add(lblTitle);
-            Controls.Add(btnSave);
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             Name = "Profile";
             Text = "Profile Credit";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -283,5 +418,12 @@
         private TextBox tbxSdtBoMe;
         private Label label3;
         private TextBox tbxTenBoMe;
+        private Label label5;
+        private TextBox tbxSotienvay;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label10;
+        private Label label9;
     }
 }
