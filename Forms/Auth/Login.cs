@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TinDungNganHang.Repositories;
+using TinDungNganHang.Services;
 
 namespace TinDungNganHang.Forms.Auth
 {
@@ -31,17 +32,22 @@ namespace TinDungNganHang.Forms.Auth
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Text;
 
-            var user = _context.Users
-                .FirstOrDefault(u => u.Username == username && u.Password == password);
+            var user = _context.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
 
             if (user != null)
             {
+                Session.CurrentUser = user;
+
                 MessageBox.Show("Login successful!");
-                // Open the main form or dashboard
+
                 var homeForm = new Forms.Home.Home();
                 homeForm.Show();
                 this.Hide();
 
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password.");
             }
         }
 

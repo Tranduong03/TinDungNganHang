@@ -71,7 +71,7 @@ namespace TinDungNganHang.Forms.Credit
                     kv.KyHanThang,
                     kv.LaiSuat,
                     kv.NgayVay,
-                    MaKH = kv.MaKH, // cần thêm MaKH để gọi CheckEligibility
+                    MaKH = kv.MaKH, 
                     Status = kv.DaDuyet ? "Approved" : "Pending"
                 })
                 .ToList();
@@ -79,7 +79,6 @@ namespace TinDungNganHang.Forms.Credit
             dataGridView1.Rows.Clear();
             foreach (var item in data)
             {
-                // Gọi service kiểm tra điều kiện cho từng khoản vay
                 string systemStatus = LoanEligibilityService.CheckEligibility(item.MaKH);
 
                 dataGridView1.Rows.Add(
