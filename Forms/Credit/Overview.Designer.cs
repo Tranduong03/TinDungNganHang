@@ -1,4 +1,5 @@
-﻿namespace TinDungNganHang.Forms.Credit
+﻿
+namespace TinDungNganHang.Forms.Credit
 {
     partial class Overview
     {
@@ -37,7 +38,7 @@
             Laisuat = new DataGridViewTextBoxColumn();
             Ngayvay = new DataGridViewTextBoxColumn();
             System = new DataGridViewTextBoxColumn();
-            Status = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewButtonColumn();
             label1 = new Label();
             btnNewLoan = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -104,10 +105,16 @@
             // 
             // Status
             // 
+            //Status = new DataGridViewButtonColumn();
             Status.HeaderText = "Trạng thái";
             Status.MinimumWidth = 8;
             Status.Name = "Status";
             Status.Width = 150;
+            Status.UseColumnTextForButtonValue = false;
+            //Status.HeaderText = "Trạng thái";
+            //Status.MinimumWidth = 8;
+            //Status.Name = "Status";
+            //Status.Width = 150;
             // 
             // label1
             // 
@@ -142,6 +149,7 @@
             Name = "Overview";
             Text = "Overview";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            this.dataGridView1.CellContentClick += new DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -158,6 +166,6 @@
         private DataGridViewTextBoxColumn Laisuat;
         private DataGridViewTextBoxColumn Ngayvay;
         private DataGridViewTextBoxColumn System;
-        private DataGridViewTextBoxColumn Status;
+        private DataGridViewButtonColumn Status;
     }
 }

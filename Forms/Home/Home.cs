@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TinDungNganHang.Forms.Auth;
 using TinDungNganHang.Repositories;
+using TinDungNganHang.Services;
 
 namespace TinDungNganHang.Forms.Home
 {
@@ -19,6 +20,15 @@ namespace TinDungNganHang.Forms.Home
         {
             InitializeComponent();
             _context = new DataContext();
+
+            if (Session.CurrentUser != null)
+            {
+                lblName.Text = $"Hello, {Session.CurrentUser.Username}";
+            }
+            else
+            {
+                lblName.Text = $"Hello, Guest";
+            }
         }
 
         private void Home_Load(object sender, EventArgs e)
