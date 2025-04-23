@@ -62,7 +62,7 @@ namespace TinDungNganHang.Forms.Home
 
         private void btnThuNo_Click(object sender, EventArgs e)
         {
-            LoadForm(new Label { Text = "Thu nợ", AutoSize = true, Font = new Font("Segoe UI", 18) });
+            LoadForm(new Forms.Collection.Debt());
         }
 
         private void btnKhachHang_Click(object sender, EventArgs e)
