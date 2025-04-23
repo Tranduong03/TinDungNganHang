@@ -62,7 +62,7 @@ namespace TinDungNganHang.Forms.Home
 
         private void btnThuNo_Click(object sender, EventArgs e)
         {
-            LoadForm(new Forms.Collection.Debt());
+            LoadForm(new Forms.Collection.Debt(this));
         }
 
         private void btnKhachHang_Click(object sender, EventArgs e)

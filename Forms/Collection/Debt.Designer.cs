@@ -139,6 +139,7 @@
             Name = "Debt";
             Text = "Debt Management";
             ((System.ComponentModel.ISupportInitialize)dgvDebt).EndInit();
+            dgvDebt.CellDoubleClick += dgvDebt_CellDoubleClick;
             ResumeLayout(false);
             PerformLayout();
         }

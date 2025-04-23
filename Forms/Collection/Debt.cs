@@ -9,19 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TinDungNganHang.Repositories;
 using TinDungNganHang.Services;
+using HomeForm = TinDungNganHang.Forms.Home.Home;
 
 namespace TinDungNganHang.Forms.Collection
 {
     public partial class Debt : Form
     {
+        private HomeForm _home;
         private readonly DataContext _context;
 
-        public Debt()
+        internal Debt(HomeForm home)
         {
             InitializeComponent();
             _context = new DataContext();
             LoadAllDebt();
-            //btnSearch.Click += btnSearch_Click;
+            _home = home;
         }
 
         private void LoadAllDebt()
@@ -66,5 +68,21 @@ namespace TinDungNganHang.Forms.Collection
 
             dgvDebt.DataSource = data;
         }
+
+        private void dgvDebt_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var row = dgvDebt.Rows[e.RowIndex];
+                int maSoNo = Convert.ToInt32(row.Cells["MaSoNo"].Value);
+                //_home.LoadForm(new Payment(maSoNo, this)); 
+
+                var paymentForm = new Payment(maSoNo, this);
+                //paymentForm.Show();
+                paymentForm.ShowDialog(this); // Form hiện lên, không cho tương tác với form dưới
+
+            }
+        }
+
     }
 }
