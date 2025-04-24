@@ -40,36 +40,15 @@ namespace TinDungNganHang.Forms.Collection
                     sn.MaKhoanVay,
                     TenKH = sn.KhoanVay?.KhachHang?.HoTen ?? "Unknown",
                     CCCD = sn.KhoanVay?.KhachHang?.CCCD ?? "Unknown",
-                    TongTienVay = sn.KhoanVay != null ? LoanCalculationService.CalculateTotalLoan(sn.KhoanVay) : 0, 
-                    sn.TongTienDaTra
+                    TongTienVay = sn.KhoanVay != null
+                        ? LoanCalculationService.CalculateTotalLoan(sn.KhoanVay).ToString("N0") + " VND"
+                        : "0 VND",
+                    TongTienDaTra = sn.TongTienDaTra.ToString("N0") + " VND"
                 })
                 .ToList();
 
             dgvDebt.DataSource = data;
         }
-
-        //private void btnSearch_Click(object sender, EventArgs e)
-        //{
-        //    string keyword = txtSearch.Text.Trim();
-
-        //    var data = _context.SoNos
-        //        .Include("KhoanVay")
-        //        .Include("KhoanVay.KhachHang")
-        //        .Where(sn => sn.MaKhoanVay.ToString().Contains(keyword) || sn.KhoanVay.KhachHang.CCCD.Contains(keyword))
-        //        .ToList()
-        //        .Select(sn => new
-        //        {
-        //            sn.MaSoNo,
-        //            sn.MaKhoanVay,
-        //            TenKH = sn.KhoanVay?.KhachHang?.HoTen ?? "Unknown",
-        //            CCCD = sn.KhoanVay?.KhachHang?.CCCD ?? "Unknown",
-        //            TongTienVay = sn.KhoanVay != null ? LoanCalculationService.CalculateTotalLoan(sn.KhoanVay) : 0, 
-        //            sn.TongTienDaTra
-        //        })
-        //        .ToList();
-
-        //    dgvDebt.DataSource = data;
-        //}
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -96,8 +75,6 @@ namespace TinDungNganHang.Forms.Collection
 
             dgvDebt.DataSource = data;
         }
-
-
 
         private void dgvDebt_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

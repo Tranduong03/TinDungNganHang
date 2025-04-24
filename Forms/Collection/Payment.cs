@@ -30,7 +30,7 @@ namespace TinDungNganHang.Forms.Collection
             using (var context = new DataContext())
             {
                 var soNo = context.SoNos
-                                  .Include("KhoanVay.KhachHang") 
+                                  .Include("KhoanVay.KhachHang")
                                   .FirstOrDefault(s => s.MaSoNo == _maSoNo);
 
                 if (soNo != null && soNo.KhoanVay != null)
@@ -39,6 +39,8 @@ namespace TinDungNganHang.Forms.Collection
 
                     var khachHang = soNo.KhoanVay.KhachHang;
                     txtCustomerName.Text = khachHang != null ? khachHang.HoTen : "Unknown";
+
+                    txtCCCD.Text = khachHang != null ? khachHang.CCCD : "Unknown";
 
                     decimal tongTien = LoanCalculationService.CalculateTotalLoan(soNo.KhoanVay);
                     txtAmountOwed.Text = tongTien.ToString("N0") + " VND";
@@ -50,10 +52,34 @@ namespace TinDungNganHang.Forms.Collection
             }
         }
 
-
         private void btnBack_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private bool _isTyping = false;
+
+        private void txtPaymentAmount_TextChanged(object sender, EventArgs e)
+        {
+            if (_isTyping) return;
+
+            _isTyping = true;
+
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text.Replace(".", "").Replace(",", "").Trim();
+
+            if (decimal.TryParse(input, out decimal value))
+            {
+                textBox.Text = string.Format("{0:N0}", value);
+                textBox.SelectionStart = textBox.Text.Length; // đưa con trỏ về cuối
+            }
+
+            _isTyping = false;
+        }
+
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

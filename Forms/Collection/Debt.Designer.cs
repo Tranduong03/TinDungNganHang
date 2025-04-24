@@ -24,125 +24,117 @@
             txtSearch = new TextBox();
             btnSearch = new Button();
             dgvDebt = new DataGridView();
+
             MaSoNo = new DataGridViewTextBoxColumn();
             MaKhoanVay = new DataGridViewTextBoxColumn();
             TenKH = new DataGridViewTextBoxColumn();
             CCCD = new DataGridViewTextBoxColumn();
             TongTienVay = new DataGridViewTextBoxColumn();
             TongTienDaTra = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dgvDebt).BeginInit();
+
+            ((System.ComponentModel.ISupportInitialize)(dgvDebt)).BeginInit();
             SuspendLayout();
+
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblTitle.Location = new Point(600, 30);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(452, 65);
-            lblTitle.TabIndex = 0;
             lblTitle.Text = "Debt Management";
+
             // 
             // txtSearch
             // 
-            txtSearch.Font = new Font("Bookman Old Style", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSearch.Font = new Font("Bookman Old Style", 14F);
             txtSearch.Location = new Point(426, 125);
-            txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Enter Customer ID or Loan ID";
             txtSearch.Size = new Size(600, 40);
-            txtSearch.TabIndex = 1;
+
             // 
             // btnSearch
             // 
             btnSearch.BackColor = Color.LawnGreen;
             btnSearch.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnSearch.Location = new Point(1061, 125);
-            btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(150, 40);
-            btnSearch.TabIndex = 2;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
+
             // 
             // dgvDebt
             // 
             dgvDebt.AllowUserToAddRows = false;
             dgvDebt.AllowUserToDeleteRows = false;
+            dgvDebt.ReadOnly = true;
+            dgvDebt.AutoGenerateColumns = false;
             dgvDebt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDebt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDebt.Columns.AddRange(new DataGridViewColumn[] { MaSoNo, MaKhoanVay, TenKH, CCCD, TongTienVay, TongTienDaTra });
             dgvDebt.Location = new Point(12, 200);
-            dgvDebt.Name = "dgvDebt";
-            dgvDebt.ReadOnly = true;
-            dgvDebt.RowHeadersWidth = 62;
-            dgvDebt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDebt.Size = new Size(1576, 1038);
-            dgvDebt.TabIndex = 3;
+            dgvDebt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDebt.Name = "dgvDebt";
+
             // 
-            // MaSoNo
+            // Columns
             // 
             MaSoNo.DataPropertyName = "MaSoNo";
             MaSoNo.HeaderText = "Mã sổ nợ";
-            MaSoNo.MinimumWidth = 8;
             MaSoNo.Name = "MaSoNo";
-            MaSoNo.ReadOnly = true;
-            // 
-            // MaKhoanVay
-            // 
+            MaSoNo.MinimumWidth = 100;
+
             MaKhoanVay.DataPropertyName = "MaKhoanVay";
             MaKhoanVay.HeaderText = "Mã khoản vay";
-            MaKhoanVay.MinimumWidth = 8;
             MaKhoanVay.Name = "MaKhoanVay";
-            MaKhoanVay.ReadOnly = true;
-            // 
-            // TenKH
-            // 
+            MaKhoanVay.MinimumWidth = 100;
+
             TenKH.DataPropertyName = "TenKH";
             TenKH.HeaderText = "Tên khách hàng";
-            TenKH.MinimumWidth = 8;
             TenKH.Name = "TenKH";
-            TenKH.ReadOnly = true;
-            // 
-            // CCCD
-            // 
+            TenKH.MinimumWidth = 150;
+
+            CCCD.DataPropertyName = "CCCD";
             CCCD.HeaderText = "CCCD";
-            CCCD.MinimumWidth = 8;
             CCCD.Name = "CCCD";
-            CCCD.ReadOnly = true;
-            // 
-            // TongTienVay
-            // 
+            CCCD.MinimumWidth = 150;
+
             TongTienVay.DataPropertyName = "TongTienVay";
             TongTienVay.HeaderText = "Tổng tiền vay";
-            TongTienVay.MinimumWidth = 8;
             TongTienVay.Name = "TongTienVay";
-            TongTienVay.ReadOnly = true;
-            // 
-            // TongTienDaTra
-            // 
+            TongTienVay.MinimumWidth = 150;
+
             TongTienDaTra.DataPropertyName = "TongTienDaTra";
             TongTienDaTra.HeaderText = "Tổng tiền đã trả";
-            TongTienDaTra.MinimumWidth = 8;
             TongTienDaTra.Name = "TongTienDaTra";
-            TongTienDaTra.ReadOnly = true;
+            TongTienDaTra.MinimumWidth = 150;
+
+            dgvDebt.Columns.AddRange(new DataGridViewColumn[]
+            {
+                MaSoNo, MaKhoanVay, TenKH, CCCD, TongTienVay, TongTienDaTra
+            });
+
             // 
-            // Debt
+            // Debt Form
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
             ClientSize = new Size(1600, 1250);
+            BackColor = Color.White;
+            Text = "Debt Management";
             Controls.Add(lblTitle);
             Controls.Add(txtSearch);
             Controls.Add(btnSearch);
             Controls.Add(dgvDebt);
             Name = "Debt";
-            Text = "Debt Management";
-            ((System.ComponentModel.ISupportInitialize)dgvDebt).EndInit();
+
             dgvDebt.CellDoubleClick += dgvDebt_CellDoubleClick;
+
+            ((System.ComponentModel.ISupportInitialize)dgvDebt).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+
 
         private DataGridViewTextBoxColumn MaSoNo;
         private DataGridViewTextBoxColumn MaKhoanVay;

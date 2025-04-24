@@ -15,6 +15,9 @@
         private TextBox txtPaymentAmount;
         private Button btnPay;
         private Button btnBack;
+        private Label lblCCCD;
+        private TextBox txtCCCD;
+
 
         protected override void Dispose(bool disposing)
         {
@@ -32,6 +35,8 @@
             txtLoanId = new TextBox();
             lblCustomerName = new Label();
             txtCustomerName = new TextBox();
+            lblCCCD = new Label();
+            txtCCCD = new TextBox();
             lblAmountOwed = new Label();
             txtAmountOwed = new TextBox();
             lblPaymentAmount = new Label();
@@ -45,19 +50,20 @@
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTitle.ForeColor = Color.MediumBlue;
-            lblTitle.Location = new Point(160, 20);
+            lblTitle.Location = new Point(163, 32);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(361, 54);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "💳 Debt Payment";
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblLoanId
             // 
             lblLoanId.AutoSize = true;
-            lblLoanId.Font = new Font("Segoe UI", 12F);
-            lblLoanId.Location = new Point(50, 100);
+            lblLoanId.Font = new Font("Bookman Old Style", 12F);
+            lblLoanId.Location = new Point(45, 110);
             lblLoanId.Name = "lblLoanId";
-            lblLoanId.Size = new Size(100, 32);
+            lblLoanId.Size = new Size(113, 27);
             lblLoanId.TabIndex = 1;
             lblLoanId.Text = "Loan ID:";
             // 
@@ -65,7 +71,7 @@
             // 
             txtLoanId.BorderStyle = BorderStyle.None;
             txtLoanId.Font = new Font("Segoe UI", 12F);
-            txtLoanId.Location = new Point(210, 95);
+            txtLoanId.Location = new Point(230, 105);
             txtLoanId.Name = "txtLoanId";
             txtLoanId.ReadOnly = true;
             txtLoanId.Size = new Size(320, 32);
@@ -74,80 +80,101 @@
             // lblCustomerName
             // 
             lblCustomerName.AutoSize = true;
-            lblCustomerName.Font = new Font("Segoe UI", 12F);
-            lblCustomerName.Location = new Point(50, 160);
+            lblCustomerName.Font = new Font("Bookman Old Style", 12F);
+            lblCustomerName.Location = new Point(45, 160);
             lblCustomerName.Name = "lblCustomerName";
-            lblCustomerName.Size = new Size(122, 32);
+            lblCustomerName.Size = new Size(135, 27);
             lblCustomerName.TabIndex = 3;
             lblCustomerName.Text = "Customer:";
             // 
             // txtCustomerName
             // 
             txtCustomerName.Font = new Font("Segoe UI", 12F);
-            txtCustomerName.Location = new Point(210, 155);
+            txtCustomerName.Location = new Point(230, 155);
             txtCustomerName.Name = "txtCustomerName";
             txtCustomerName.ReadOnly = true;
             txtCustomerName.Size = new Size(320, 39);
             txtCustomerName.TabIndex = 4;
             // 
+            // lblCCCD
+            // 
+            lblCCCD.AutoSize = true;
+            lblCCCD.Font = new Font("Bookman Old Style", 12F);
+            lblCCCD.Location = new Point(45, 215);
+            lblCCCD.Name = "lblCCCD";
+            lblCCCD.Size = new Size(93, 27);
+            lblCCCD.TabIndex = 5;
+            lblCCCD.Text = "CCCD:";
+            // 
+            // txtCCCD
+            // 
+            txtCCCD.Font = new Font("Segoe UI", 12F);
+            txtCCCD.Location = new Point(230, 210);
+            txtCCCD.Name = "txtCCCD";
+            txtCCCD.ReadOnly = true;
+            txtCCCD.Size = new Size(320, 39);
+            txtCCCD.TabIndex = 6;
+            // 
             // lblAmountOwed
             // 
             lblAmountOwed.AutoSize = true;
-            lblAmountOwed.Font = new Font("Segoe UI", 12F);
-            lblAmountOwed.Location = new Point(50, 220);
+            lblAmountOwed.Font = new Font("Bookman Old Style", 12F);
+            lblAmountOwed.Location = new Point(45, 270);
             lblAmountOwed.Name = "lblAmountOwed";
-            lblAmountOwed.Size = new Size(174, 32);
-            lblAmountOwed.TabIndex = 5;
+            lblAmountOwed.Size = new Size(187, 27);
+            lblAmountOwed.TabIndex = 7;
             lblAmountOwed.Text = "Amount Owed:";
             // 
             // txtAmountOwed
             // 
             txtAmountOwed.Font = new Font("Segoe UI", 12F);
-            txtAmountOwed.Location = new Point(210, 215);
+            txtAmountOwed.Location = new Point(230, 265);
             txtAmountOwed.Name = "txtAmountOwed";
             txtAmountOwed.ReadOnly = true;
             txtAmountOwed.Size = new Size(320, 39);
-            txtAmountOwed.TabIndex = 6;
+            txtAmountOwed.TabIndex = 8;
             // 
             // lblPaymentAmount
             // 
             lblPaymentAmount.AutoSize = true;
-            lblPaymentAmount.Font = new Font("Segoe UI", 12F);
-            lblPaymentAmount.Location = new Point(50, 280);
+            lblPaymentAmount.Font = new Font("Bookman Old Style", 12F);
+            lblPaymentAmount.Location = new Point(45, 325);
             lblPaymentAmount.Name = "lblPaymentAmount";
-            lblPaymentAmount.Size = new Size(204, 32);
-            lblPaymentAmount.TabIndex = 7;
-            lblPaymentAmount.Text = "Payment Amount:";
+            lblPaymentAmount.Size = new Size(123, 27);
+            lblPaymentAmount.TabIndex = 9;
+            lblPaymentAmount.Text = "Payment:";
             // 
             // txtPaymentAmount
             // 
             txtPaymentAmount.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             txtPaymentAmount.ForeColor = Color.DarkGreen;
-            txtPaymentAmount.Location = new Point(210, 275);
+            txtPaymentAmount.Location = new Point(230, 320);
             txtPaymentAmount.Name = "txtPaymentAmount";
             txtPaymentAmount.Size = new Size(320, 39);
-            txtPaymentAmount.TabIndex = 8;
+            txtPaymentAmount.TabIndex = 10;
+            txtPaymentAmount.TextChanged += txtPaymentAmount_TextChanged;
             // 
             // btnPay
             // 
             btnPay.BackColor = Color.LawnGreen;
             btnPay.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnPay.ForeColor = Color.Black;
-            btnPay.Location = new Point(330, 350);
+            btnPay.Location = new Point(325, 380);
             btnPay.Name = "btnPay";
             btnPay.Size = new Size(100, 45);
-            btnPay.TabIndex = 9;
+            btnPay.TabIndex = 11;
             btnPay.Text = "✔ Pay";
             btnPay.UseVisualStyleBackColor = false;
+            btnPay.Click += btnPay_Click;
             // 
             // btnBack
             // 
             btnBack.BackColor = Color.LightGray;
             btnBack.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnBack.Location = new Point(210, 350);
+            btnBack.Location = new Point(205, 380);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(100, 45);
-            btnBack.TabIndex = 10;
+            btnBack.TabIndex = 12;
             btnBack.Text = "← Back";
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click_1;
@@ -157,12 +184,14 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(600, 500);
+            ClientSize = new Size(622, 460);
             Controls.Add(lblTitle);
             Controls.Add(lblLoanId);
             Controls.Add(txtLoanId);
             Controls.Add(lblCustomerName);
             Controls.Add(txtCustomerName);
+            Controls.Add(lblCCCD);
+            Controls.Add(txtCCCD);
             Controls.Add(lblAmountOwed);
             Controls.Add(txtAmountOwed);
             Controls.Add(lblPaymentAmount);
