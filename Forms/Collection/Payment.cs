@@ -79,7 +79,57 @@ namespace TinDungNganHang.Forms.Collection
 
         private void btnPay_Click(object sender, EventArgs e)
         {
+            if (!decimal.TryParse(txtPaymentAmount.Text.Trim(), out decimal paymentAmount) || paymentAmount <= 0)
+            {
+                MessageBox.Show("Please enter a valid payment amount greater than 0!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            using (var context = new DataContext())
+            {
+                var soNo = context.SoNos
+                                  .Include(s => s.KhoanVay)
+                                  .FirstOrDefault(s => s.MaSoNo == _maSoNo);
+
+                if (soNo == null)
+                {
+                    MessageBox.Show("Debt record not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                decimal totalLoan = LoanCalculationService.CalculateTotalLoan(soNo.KhoanVay);
+
+                decimal amountRemaining = totalLoan - soNo.TongTienDaTra;
+
+                if (paymentAmount > amountRemaining)
+                {
+                    MessageBox.Show($"Payment amount exceeds the remaining debt.\nRemaining: {amountRemaining:N0} VND", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Cộng tiền đã trả
+                soNo.TongTienDaTra += paymentAmount;
+
+                // Nếu đã thanh toán hết, bạn có thể chọn xóa dòng SoNo hoặc giữ lại
+                if (soNo.TongTienDaTra >= totalLoan)
+                {
+                    //context.SoNos.Remove(soNo); // Nếu muốn xóa khi trả hết nợ
+                    MessageBox.Show("Debt fully paid!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Payment successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                context.SaveChanges();
+            }
+
+            // Reload lại form gốc
+            //_parentForm.LoadAllDebt();
+
+            // Đóng form Payment
+            this.Close();
         }
+
     }
 }
