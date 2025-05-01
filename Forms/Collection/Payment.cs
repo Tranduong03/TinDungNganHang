@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using TinDungNganHang.Repositories;
 using TinDungNganHang.Services;
 using System.Data.Entity;
+using TinDungNganHang.Models;
+using TinDungNganHang.Helpers;
 
 namespace TinDungNganHang.Forms.Collection
 {
@@ -87,11 +89,9 @@ namespace TinDungNganHang.Forms.Collection
 
             using (var context = new DataContext())
             {
-                var soNo = context.SoNos
-                                  .Include(s => s.KhoanVay)
-                                  .FirstOrDefault(s => s.MaSoNo == _maSoNo);
+                var soNo = context.SoNos.Include(s => s.KhoanVay).FirstOrDefault(s => s.MaSoNo == _maSoNo);
 
-                if (soNo == null)
+                if (soNo == null || soNo.KhoanVay == null)
                 {
                     MessageBox.Show("Debt record not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -107,19 +107,33 @@ namespace TinDungNganHang.Forms.Collection
                     return;
                 }
 
-                // Cộng tiền đã trả
                 soNo.TongTienDaTra += paymentAmount;
 
-                // Nếu đã thanh toán hết, bạn có thể chọn xóa dòng SoNo hoặc giữ lại
                 if (soNo.TongTienDaTra >= totalLoan)
                 {
-                    //context.SoNos.Remove(soNo); // Nếu muốn xóa khi trả hết nợ
                     MessageBox.Show("Debt fully paid!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     MessageBox.Show("Payment successful.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                context.LichSuTraNos.Add(new LichSuTraNo
+                {
+                    MaKhoanVay = soNo.MaKhoanVay,
+                    NgayTra = DateTime.Now,
+                    SoTienTra = paymentAmount,
+                    TrongHan = PaymentDeadlineHelper.IsWithinDeadline(
+                                soNo.KhoanVay.NgayVay,
+                                soNo.KhoanVay.KyHanThang,
+                                DateTime.Now
+                    ),
+                    MaUser = Session.CurrentUser?.MaUser ?? 0,
+                    //GhiChu = "Thanh toán qua giao diện"
+                    GhiChu = PaymentDeadlineHelper.IsWithinDeadline(soNo.KhoanVay.NgayVay, soNo.KhoanVay.KyHanThang, DateTime.Now)
+                    ? "Thanh toán trong hạn" : "Thanh toán quá hạn, phạt thêm 500.000VND"
+                });
+
 
                 context.SaveChanges();
             }

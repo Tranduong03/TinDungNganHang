@@ -57,7 +57,7 @@ namespace TinDungNganHang.Forms.Home
 
         private void btnDuyetVay_Click(object sender, EventArgs e)
         {
-            LoadForm(new Label { Text = "Duyệt vay", AutoSize = true, Font = new Font("Segoe UI", 18) });
+            LoadForm(new Collection.HistoryPayment());
         }
 
         private void btnThuNo_Click(object sender, EventArgs e)

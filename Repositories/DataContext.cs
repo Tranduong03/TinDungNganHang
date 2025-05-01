@@ -12,11 +12,11 @@ namespace TinDungNganHang.Repositories
     {
         public DataContext() : base("name=DefaultConnection") { }
 
-        public DbSet<KhachHang> KhachHangs { get; set; }
-        public DbSet<KhoanVay> KhoanVays { get; set; }
-        public DbSet<LichSuTraNo> LichSuTraNos { get; set; }
-        public DbSet<SoNo> SoNos { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<KhachHang> KhachHangs { get; set; } = null!;
+        public DbSet<KhoanVay> KhoanVays { get; set; } = null!;
+        public DbSet<LichSuTraNo> LichSuTraNos { get; set; } = null!;
+        public DbSet<SoNo> SoNos { get; set; } = null!;
+        public DbSet<User> Users { get; set; } = null!;
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
