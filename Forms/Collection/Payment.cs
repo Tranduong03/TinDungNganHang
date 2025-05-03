@@ -138,10 +138,6 @@ namespace TinDungNganHang.Forms.Collection
                 context.SaveChanges();
             }
 
-            // Reload lại form gốc
-            //_parentForm.LoadAllDebt();
-
-            // Đóng form Payment
             this.Close();
         }
 

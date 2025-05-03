@@ -26,7 +26,7 @@ namespace TinDungNganHang.Forms.Collection
         {
             var rawData = _context.LichSuTraNos
                 .Include("NguoiThuNo")
-                .ToList(); // Đưa dữ liệu về bộ nhớ trước
+                .ToList(); 
 
             var data = rawData.Select(p => new
             {
