@@ -22,23 +22,6 @@ namespace TinDungNganHang.Forms.Collection
             LoadHistory();
         }
 
-        //private void LoadHistory()
-        //{
-        //    var data = _context.LichSuTraNos
-        //        //.Include("NguoiThuNo") // MaUser → NguoiThuNo (User)
-        //        .Select(p => new
-        //        {
-        //            p.MaKhoanVay,
-        //            NgayTra = p.NgayTra.ToString("dd/MM/yyyy"),
-        //            SoTienTra = p.SoTienTra.ToString("N0") + " VND",
-        //            TrongHan = p.TrongHan ? "Trong hạn" : "Quá hạn",
-        //            p.GhiChu,
-        //            //NguoiThuNo = p.NguoiThuNo != null ? p.NguoiThuNo.HoTen : "Không rõ"
-        //        })
-        //        .ToList();
-
-        //    dgvHistory.DataSource = data;
-        //}
         private void LoadHistory()
         {
             var rawData = _context.LichSuTraNos
