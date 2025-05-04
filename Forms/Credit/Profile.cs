@@ -17,11 +17,13 @@ namespace TinDungNganHang.Forms.Credit
     public partial class Profile : Form
     {
         private readonly DataContext _context;
+        private Home.Home _home;
 
-        public Profile()
+        internal Profile(Home.Home form)
         {
             InitializeComponent();
             _context = new DataContext();
+            _home = form;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -100,11 +102,16 @@ namespace TinDungNganHang.Forms.Credit
             MessageBox.Show("Đã lưu khoản vay thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        //private void btnCancelLoan_Click(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    var homePanel = new HomePanel(); 
+        //    homePanel.Show();
+        //}
+
         private void btnCancelLoan_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var homePanel = new HomePanel(); 
-            homePanel.Show();
+            _home.LoadForm(new Credit.Overview(_home));
         }
     }
 }

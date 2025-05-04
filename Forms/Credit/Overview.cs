@@ -118,7 +118,7 @@ namespace TinDungNganHang.Forms.Credit
 
         private void btnNewLoan_Click(object sender, EventArgs e)
         {
-            _home.LoadForm(new Profile());
+            _home.LoadForm(new Profile(_home));
         }
     }
 }
