@@ -26,11 +26,13 @@ namespace TinDungNganHang.Forms.Collection
         {
             var rawData = _context.LichSuTraNos
                 .Include("NguoiThuNo")
-                .ToList(); 
+                .Include("KhoanVay.KhachHang")
+                .ToList();
 
             var data = rawData.Select(p => new
             {
                 p.MaKhoanVay,
+                CCCD = p.KhoanVay?.KhachHang?.CCCD ?? "Không rõ",
                 NgayTra = p.NgayTra.ToString("dd/MM/yyyy"),
                 SoTienTra = p.SoTienTra.ToString("N0") + " VND",
                 TrongHan = p.TrongHan ? "Trong hạn" : "Quá hạn",

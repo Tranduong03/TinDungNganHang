@@ -72,7 +72,7 @@
             dgvDebt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDebt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDebt.Location = new Point(12, 200);
-            dgvDebt.Size = new Size(1576, 1038);
+            dgvDebt.Size = new Size(1552, 980);
             dgvDebt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDebt.Name = "dgvDebt";
 

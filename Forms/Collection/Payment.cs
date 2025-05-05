@@ -27,6 +27,34 @@ namespace TinDungNganHang.Forms.Collection
             LoadPaymentInfo();
         }
 
+        //private void LoadPaymentInfo()
+        //{
+        //    using (var context = new DataContext())
+        //    {
+        //        var soNo = context.SoNos
+        //                          .Include("KhoanVay.KhachHang")
+        //                          .FirstOrDefault(s => s.MaSoNo == _maSoNo);
+
+        //        if (soNo != null && soNo.KhoanVay != null)
+        //        {
+        //            txtLoanId.Text = soNo.MaKhoanVay.ToString();
+
+        //            var khachHang = soNo.KhoanVay.KhachHang;
+        //            txtCustomerName.Text = khachHang != null ? khachHang.HoTen : "Unknown";
+
+        //            txtCCCD.Text = khachHang != null ? khachHang.CCCD : "Unknown";
+
+        //            decimal tongTien = LoanCalculationService.CalculateTotalLoan(soNo.KhoanVay);
+        //            txtAmountOwed.Text = tongTien.ToString("N0") + " VND";
+
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Không tìm thấy thông tin sổ nợ hoặc khoản vay!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        }
+        //    }
+        //}
+
         private void LoadPaymentInfo()
         {
             using (var context = new DataContext())
@@ -40,12 +68,15 @@ namespace TinDungNganHang.Forms.Collection
                     txtLoanId.Text = soNo.MaKhoanVay.ToString();
 
                     var khachHang = soNo.KhoanVay.KhachHang;
-                    txtCustomerName.Text = khachHang != null ? khachHang.HoTen : "Unknown";
-
-                    txtCCCD.Text = khachHang != null ? khachHang.CCCD : "Unknown";
+                    txtCustomerName.Text = khachHang?.HoTen ?? "Unknown";
+                    txtCCCD.Text = khachHang?.CCCD ?? "Unknown";
 
                     decimal tongTien = LoanCalculationService.CalculateTotalLoan(soNo.KhoanVay);
+                    decimal daTra = soNo.TongTienDaTra;
+                    decimal conNo = tongTien - daTra;
+
                     txtAmountOwed.Text = tongTien.ToString("N0") + " VND";
+                    txtRemainingAmount.Text = conNo.ToString("N0") + " VND";
                 }
                 else
                 {

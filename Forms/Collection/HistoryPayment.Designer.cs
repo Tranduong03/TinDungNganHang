@@ -43,7 +43,7 @@
             dgvHistory.ReadOnly = true;
             dgvHistory.RowHeadersWidth = 62;
             dgvHistory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvHistory.Size = new Size(1576, 1102);
+            dgvHistory.Size = new Size(1552, 1040);
             dgvHistory.TabIndex = 1;
             // 
             // HistoryPayment
