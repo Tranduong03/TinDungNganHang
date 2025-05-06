@@ -253,11 +253,9 @@ namespace TinDungNganHang.Forms.Credit
             txtAmountMin.Text = "";
             txtAmountMax.Text = "";
 
-            // Đặt khoảng ngày về mặc định (tuỳ bạn chọn)
             dtFrom.Value = DateTime.Today.AddYears(-1);
             dtTo.Value = DateTime.Today;
 
-            // Gọi lại LoadData hoặc FilterData
             LoadData();
         }
 
