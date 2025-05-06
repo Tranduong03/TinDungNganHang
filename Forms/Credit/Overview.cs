@@ -108,7 +108,7 @@ namespace TinDungNganHang.Forms.Credit
 
                                 MessageBox.Show("Duyệt thành công và đã ghi vào sổ nợ!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                LoadData(); 
+                                LoadData();
                             }
                         }
                     }
@@ -180,6 +180,91 @@ namespace TinDungNganHang.Forms.Credit
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void FilterData()
+        {
+            dataGridView1.Rows.Clear();
+
+            string keyword = textBox1.Text.Trim().ToLower();
+            string customerName = (Controls["txtCustomerName"] as TextBox)?.Text.Trim().ToLower() ?? "";
+            string status = (Controls["cbStatus"] as ComboBox)?.SelectedItem?.ToString() ?? "All";
+
+            string txtMin = (Controls["txtAmountMin"] as TextBox)?.Text.Trim() ?? "";
+            string txtMax = (Controls["txtAmountMax"] as TextBox)?.Text.Trim() ?? "";
+
+            DateTime? dtFrom = (Controls["dtFrom"] as DateTimePicker)?.Value.Date;
+            DateTime? dtTo = (Controls["dtTo"] as DateTimePicker)?.Value.Date;
+
+            decimal? minAmount = decimal.TryParse(txtMin, out var min) ? min : null;
+            decimal? maxAmount = decimal.TryParse(txtMax, out var max) ? max : null;
+
+            var data = _context.KhoanVays.Include(kv => kv.KhachHang).AsQueryable();
+
+            if (!string.IsNullOrEmpty(keyword))
+                data = data.Where(kv => kv.MaKhoanVay.ToString().Contains(keyword));
+
+            if (!string.IsNullOrEmpty(customerName))
+                data = data.Where(kv => kv.KhachHang != null && kv.KhachHang.HoTen.ToLower().Contains(customerName));
+
+            if (minAmount.HasValue)
+                data = data.Where(kv => kv.SoTienVay >= minAmount.Value);
+
+            if (maxAmount.HasValue)
+                data = data.Where(kv => kv.SoTienVay <= maxAmount.Value);
+
+            if (dtFrom.HasValue && dtTo.HasValue)
+                data = data.Where(kv => kv.NgayVay >= dtFrom.Value && kv.NgayVay <= dtTo.Value);
+
+            if (status == "Approved")
+                data = data.Where(kv => kv.DaDuyet);
+            else if (status == "Pending")
+                data = data.Where(kv => !kv.DaDuyet);
+
+            foreach (var item in data)
+            {
+                string systemStatus = LoanEligibilityService.CheckEligibility(item.MaKH);
+
+                int rowIndex = dataGridView1.Rows.Add(
+                    item.MaKhoanVay,
+                    item.KhachHang?.HoTen ?? "Unknown",
+                    item.SoTienVay.ToString("N0") + " VND",
+                    item.KyHanThang + " tháng",
+                    item.LaiSuat.ToString("0.##") + " %",
+                    item.NgayVay.ToShortDateString(),
+                    systemStatus,
+                    item.DaDuyet ? "Approved" : "Pending"
+                );
+
+                var row = dataGridView1.Rows[rowIndex];
+                var statusCell = (DataGridViewButtonCell)row.Cells["Status"];
+                statusCell.Style.BackColor = item.DaDuyet ? Color.LightGray : Color.LawnGreen;
+                statusCell.FlatStyle = item.DaDuyet ? FlatStyle.Flat : FlatStyle.Standard;
+                statusCell.ReadOnly = item.DaDuyet;
+            }
+        }
+
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            // Xóa các input lọc về mặc định
+            txtCustomerName.Text = "";
+            cbStatus.SelectedIndex = 0; // "Tất cả"
+            txtAmountMin.Text = "";
+            txtAmountMax.Text = "";
+
+            // Đặt khoảng ngày về mặc định (tuỳ bạn chọn)
+            dtFrom.Value = DateTime.Today.AddYears(-1);
+            dtTo.Value = DateTime.Today;
+
+            // Gọi lại LoadData hoặc FilterData
+            LoadData();
+        }
+
+
+        private void btn_filter_Click(object sender, EventArgs e)
+        {
+            FilterData();
         }
     }
 }
