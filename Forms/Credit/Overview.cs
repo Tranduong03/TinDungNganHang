@@ -120,5 +120,66 @@ namespace TinDungNganHang.Forms.Credit
         {
             _home.LoadForm(new Profile(_home));
         }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string keyword = textBox1.Text.Trim();
+
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    var data = _context.KhoanVays
+                        .Where(kv => kv.MaKhoanVay.ToString().Contains(keyword))
+                        .Select(kv => new
+                        {
+                            kv.MaKhoanVay,
+                            HoTenKH = kv.KhachHang != null ? kv.KhachHang.HoTen : "Unknown",
+                            kv.SoTienVay,
+                            kv.KyHanThang,
+                            kv.LaiSuat,
+                            kv.NgayVay,
+                            MaKH = kv.MaKH,
+                            DaDuyet = kv.DaDuyet
+                        })
+                        .ToList();
+
+                    dataGridView1.Rows.Clear();
+
+                    foreach (var item in data)
+                    {
+                        string systemStatus = LoanEligibilityService.CheckEligibility(item.MaKH);
+
+                        int rowIndex = dataGridView1.Rows.Add(
+                            item.MaKhoanVay,
+                            item.HoTenKH,
+                            item.SoTienVay.ToString("N0") + " VND",
+                            item.KyHanThang + " tháng",
+                            item.LaiSuat.ToString("0.##") + " %",
+                            item.NgayVay.ToShortDateString(),
+                            systemStatus,
+                            ""
+                        );
+
+                        var row = dataGridView1.Rows[rowIndex];
+
+                        if (item.DaDuyet)
+                        {
+                            row.Cells["Status"].Value = "Approved";
+                            ((DataGridViewButtonCell)row.Cells["Status"]).Style.BackColor = Color.LightGray;
+                            ((DataGridViewButtonCell)row.Cells["Status"]).FlatStyle = FlatStyle.Flat;
+                            ((DataGridViewButtonCell)row.Cells["Status"]).ReadOnly = true;
+                        }
+                        else
+                        {
+                            row.Cells["Status"].Value = "Pending";
+                            ((DataGridViewButtonCell)row.Cells["Status"]).Style.BackColor = Color.LawnGreen;
+                        }
+                    }
+                }
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
     }
 }
