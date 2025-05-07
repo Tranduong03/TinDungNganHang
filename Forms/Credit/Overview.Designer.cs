@@ -166,7 +166,7 @@ namespace TinDungNganHang.Forms.Credit
             // cbStatus
             // 
             cbStatus.Font = new Font("Bookman Old Style", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbStatus.Items.AddRange(new object[] { "Tất cả", "Approved", "Pending" });
+            cbStatus.Items.AddRange(new object[] { "All", "Approved", "Pending" });
             cbStatus.Location = new Point(0, 0);
             cbStatus.Name = "cbStatus";
             cbStatus.Size = new Size(231, 41);
@@ -210,6 +210,7 @@ namespace TinDungNganHang.Forms.Credit
             dtFrom.Name = "dtFrom";
             dtFrom.Size = new Size(212, 36);
             dtFrom.TabIndex = 4;
+            dtFrom.Value = new DateTime(2005, 5, 8, 1, 20, 0, 0);
             // 
             // dtTo
             // 

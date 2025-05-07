@@ -187,14 +187,14 @@ namespace TinDungNganHang.Forms.Credit
             dataGridView1.Rows.Clear();
 
             string keyword = textBox1.Text.Trim().ToLower();
-            string customerName = (Controls["txtCustomerName"] as TextBox)?.Text.Trim().ToLower() ?? "";
-            string status = (Controls["cbStatus"] as ComboBox)?.SelectedItem?.ToString() ?? "All";
+            string customerName = txtCustomerName.Text.Trim().ToLower();
+            string status = cbStatus.SelectedItem?.ToString() ?? "All";
 
-            string txtMin = (Controls["txtAmountMin"] as TextBox)?.Text.Trim() ?? "";
-            string txtMax = (Controls["txtAmountMax"] as TextBox)?.Text.Trim() ?? "";
+            string txtMin = txtAmountMin.Text.Trim();
+            string txtMax = txtAmountMax.Text.Trim();
 
-            DateTime? dtFrom = (Controls["dtFrom"] as DateTimePicker)?.Value.Date;
-            DateTime? dtTo = (Controls["dtTo"] as DateTimePicker)?.Value.Date;
+            DateTime from = dtFrom.Value.Date;
+            DateTime to = dtTo.Value.Date;
 
             decimal? minAmount = decimal.TryParse(txtMin, out var min) ? min : null;
             decimal? maxAmount = decimal.TryParse(txtMax, out var max) ? max : null;
@@ -202,26 +202,37 @@ namespace TinDungNganHang.Forms.Credit
             var data = _context.KhoanVays.Include(kv => kv.KhachHang).AsQueryable();
 
             if (!string.IsNullOrEmpty(keyword))
+            {
                 data = data.Where(kv => kv.MaKhoanVay.ToString().Contains(keyword));
+            }
 
             if (!string.IsNullOrEmpty(customerName))
+            {
                 data = data.Where(kv => kv.KhachHang != null && kv.KhachHang.HoTen.ToLower().Contains(customerName));
+            }
 
             if (minAmount.HasValue)
+            {
                 data = data.Where(kv => kv.SoTienVay >= minAmount.Value);
+            }
 
             if (maxAmount.HasValue)
+            {
                 data = data.Where(kv => kv.SoTienVay <= maxAmount.Value);
+            }
 
-            if (dtFrom.HasValue && dtTo.HasValue)
-                data = data.Where(kv => kv.NgayVay >= dtFrom.Value && kv.NgayVay <= dtTo.Value);
+            data = data.Where(kv => kv.NgayVay >= from && kv.NgayVay <= to);
 
             if (status == "Approved")
+            {
                 data = data.Where(kv => kv.DaDuyet);
+            }
             else if (status == "Pending")
+            {
                 data = data.Where(kv => !kv.DaDuyet);
+            }
 
-            foreach (var item in data)
+            foreach (var item in data.ToList())
             {
                 string systemStatus = LoanEligibilityService.CheckEligibility(item.MaKH);
 
@@ -243,6 +254,7 @@ namespace TinDungNganHang.Forms.Credit
                 statusCell.ReadOnly = item.DaDuyet;
             }
         }
+
 
 
         private void btnRefresh_Click(object sender, EventArgs e)
