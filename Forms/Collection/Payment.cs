@@ -171,6 +171,5 @@ namespace TinDungNganHang.Forms.Collection
 
             this.Close();
         }
-
     }
 }

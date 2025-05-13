@@ -57,9 +57,9 @@
             lblTitle.ForeColor = Color.MediumBlue;
             lblTitle.Location = new Point(163, 32);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(361, 54);
+            lblTitle.Size = new Size(307, 54);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "💳 Debt Payment";
+            lblTitle.Text = "💳 Thanh Toán";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblLoanId

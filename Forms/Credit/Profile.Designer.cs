@@ -75,9 +75,9 @@
             lblTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblTitle.Location = new Point(575, 30);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(450, 65);
+            lblTitle.Size = new Size(461, 65);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Credit Information";
+            lblTitle.Text = "Lập Hồ Sơ Vay Tiền";
             // 
             // txtCCCD
             // 
@@ -170,7 +170,7 @@
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(244, 49);
             btnSave.TabIndex = 15;
-            btnSave.Text = "Save";
+            btnSave.Text = "Lưu thông tin";
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += BtnSave_Click;
             // 
@@ -180,11 +180,11 @@
             btnClearAll.FlatStyle = FlatStyle.Flat;
             btnClearAll.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClearAll.ForeColor = Color.Black;
-            btnClearAll.Location = new Point(426, 953);
+            btnClearAll.Location = new Point(373, 953);
             btnClearAll.Name = "btnClearAll";
-            btnClearAll.Size = new Size(170, 49);
+            btnClearAll.Size = new Size(223, 49);
             btnClearAll.TabIndex = 16;
-            btnClearAll.Text = "Clear All";
+            btnClearAll.Text = "Xóa thông tin";
             btnClearAll.UseVisualStyleBackColor = false;
             btnClearAll.Click += btnClearAll_Click;
             // 
@@ -265,11 +265,11 @@
             label2.BackColor = Color.LightGoldenrodYellow;
             label2.BorderStyle = BorderStyle.FixedSingle;
             label2.Font = new Font("Bookman Old Style", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(149, 83);
+            label2.Location = new Point(172, 83);
             label2.Name = "label2";
-            label2.Size = new Size(414, 45);
+            label2.Size = new Size(248, 45);
             label2.TabIndex = 18;
-            label2.Text = "Information Customer";
+            label2.Text = "Sơ yếu lí lịch";
             // 
             // panel2
             // 
@@ -304,7 +304,7 @@
             btnCancelLoan.Name = "btnCancelLoan";
             btnCancelLoan.Size = new Size(170, 49);
             btnCancelLoan.TabIndex = 33;
-            btnCancelLoan.Text = "Cancel";
+            btnCancelLoan.Text = "Hủy";
             btnCancelLoan.UseVisualStyleBackColor = false;
             btnCancelLoan.Click += btnCancelLoan_Click;
             // 
@@ -318,7 +318,7 @@
             btnSaveLoan.Name = "btnSaveLoan";
             btnSaveLoan.Size = new Size(244, 49);
             btnSaveLoan.TabIndex = 20;
-            btnSaveLoan.Text = "Save All";
+            btnSaveLoan.Text = "Lưu hồ sơ";
             btnSaveLoan.UseVisualStyleBackColor = false;
             btnSaveLoan.Click += btnSaveLoan_Click;
             // 
